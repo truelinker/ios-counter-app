@@ -46,4 +46,28 @@ final class CounterViewModelTests: XCTestCase {
         sut.increment()
         XCTAssertEqual(sut.count, 1, "Counter still works normally after being clamped")
     }
+
+    func testSetCountToPositiveValue() {
+        let sut = CounterViewModel()
+        sut.setCount(5)
+        XCTAssertEqual(sut.count, 5)
+    }
+
+    func testSetCountToZero() {
+        let sut = CounterViewModel(count: 4)
+        sut.setCount(0)
+        XCTAssertEqual(sut.count, 0)
+    }
+
+    func testSetCountClampsNegativeToZero() {
+        let sut = CounterViewModel()
+        sut.setCount(-3)
+        XCTAssertEqual(sut.count, 0, "Negative values must be clamped to zero")
+    }
+
+    func testSetCountOverridesExistingValue() {
+        let sut = CounterViewModel(count: 2)
+        sut.setCount(10)
+        XCTAssertEqual(sut.count, 10, "setCount sets an absolute value, not a relative adjustment")
+    }
 }
