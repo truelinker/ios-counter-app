@@ -37,6 +37,21 @@ final class CounterViewModelTests: XCTestCase {
         XCTAssertEqual(sut.count, 0, "Repeated decrements must stay clamped at zero")
     }
 
+    func testDoubleCount() {
+        let zero = CounterViewModel()
+        zero.doubleCount()
+        XCTAssertEqual(zero.count, 0, "Doubling zero stays at zero")
+
+        let three = CounterViewModel(count: 3)
+        three.doubleCount()
+        XCTAssertEqual(three.count, 6, "Doubling 3 yields 6")
+
+        let sut = CounterViewModel(count: 5)
+        sut.reset()
+        sut.doubleCount()
+        XCTAssertEqual(sut.count, 0, "Doubling after reset stays at zero")
+    }
+
     func testDecrementClampsAfterReachingZero() {
         let sut = CounterViewModel(count: 1)
         sut.decrement()

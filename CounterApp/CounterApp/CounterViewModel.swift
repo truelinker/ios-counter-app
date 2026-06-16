@@ -22,4 +22,9 @@ final class CounterViewModel: ObservableObject {
     func reset() {
         count = 0
     }
+
+    /// Double the current count.
+    func doubleCount() {
+        count *= 2
+    }
 }
