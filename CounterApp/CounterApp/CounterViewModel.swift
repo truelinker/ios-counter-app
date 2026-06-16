@@ -22,4 +22,9 @@ final class CounterViewModel: ObservableObject {
     func reset() {
         count = 0
     }
+
+    /// Set the count to a given value, clamping negatives to zero.
+    func setCount(_ value: Int) {
+        count = max(0, value)
+    }
 }
