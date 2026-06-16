@@ -18,6 +18,11 @@ final class CounterViewModel: ObservableObject {
         count = max(0, count - 1)
     }
 
+    /// Triple the current count.
+    func tripleCount() {
+        count *= 3
+    }
+
     /// Reset the count back to zero.
     func reset() {
         count = 0

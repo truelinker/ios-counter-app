@@ -22,6 +22,16 @@ final class CounterViewModelTests: XCTestCase {
         XCTAssertEqual(sut.count, 2)
     }
 
+    func testTripleCount() {
+        let zero = CounterViewModel()
+        zero.tripleCount()
+        XCTAssertEqual(zero.count, 0, "Tripling zero stays zero")
+
+        let sut = CounterViewModel(count: 2)
+        sut.tripleCount()
+        XCTAssertEqual(sut.count, 6, "Tripling 2 yields 6")
+    }
+
     func testReset() {
         let sut = CounterViewModel(count: 5)
         sut.reset()
